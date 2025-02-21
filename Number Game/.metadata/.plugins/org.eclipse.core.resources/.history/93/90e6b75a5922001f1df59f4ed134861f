@@ -1,0 +1,94 @@
+/*
+ * 
+ */
+package controll;
+
+
+import java.io.FileWriter;
+import java.io.IOException;
+
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+
+
+
+
+
+public class Writer {
+
+    
+    private LocalDate currentDate;
+    private LocalTime currentTime;
+    public static  int numberOfTries = 10;
+    private String dateString;
+    private String timeString;
+    public static String playerID="";
+    
+    public Writer() {
+        date();
+        time();
+        saveCurrentDateToFile();
+        
+    }
+
+    
+
+    public void date() {
+        currentDate = LocalDate.now();
+        
+        DateTimeFormatter date = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        dateString = currentDate.format(date);
+       
+    }
+   public void time() {
+		    currentTime = LocalTime.now();
+	        
+	        DateTimeFormatter time = DateTimeFormatter.ofPattern("HH:mm:ss");
+	        timeString = currentTime.format(time);
+	        
+   }
+  
+    public void saveCurrentDateToFile() {
+    
+    		
+    	try {
+    	    FileWriter writer = new FileWriter("Statistic_save.txt", true);
+    	    StringBuilder sb = new StringBuilder();
+    	
+    	    if(numberOfTries<10) {
+    	   System.out.println("writer active");
+          	   
+    	    sb.append(playerID);
+    	    sb.append(" ");
+    	    sb.append(dateString);
+    	    sb.append(" ");
+    	    sb.append(timeString);
+    	    sb.append(" ");
+    	    sb.append(Selectmode.mode);
+    	    sb.append(" ");
+    	    sb.append(Gamemodeone.finished);
+    	    sb.append(" ");
+    	    sb.append(numberOfTries*(-1)+10);
+    	    sb.append("\n");
+
+    	    writer.write(sb.toString());
+    	    writer.close();
+    	    }
+    	} catch (IOException e) {
+    	    e.printStackTrace();
+    	}
+    }
+}   
+    
+    
+  
+ 
+
+
+
+
+
+
+
+

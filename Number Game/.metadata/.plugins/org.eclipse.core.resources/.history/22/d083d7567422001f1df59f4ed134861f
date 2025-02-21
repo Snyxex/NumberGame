@@ -1,0 +1,365 @@
+
+package controll;
+
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+
+
+public class Gamemodeone {
+
+	public static JFrame frame;
+	public static String finished="";
+    public static String input="";
+    private JFrame popUp;
+	private String ID;
+    
+	
+	
+	
+	public Gamemodeone() {
+		 Time restart = new Time();
+		frame = new JFrame();
+		frame.setBounds(0, 0, 1920, 1080);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
+		Font font = new Font("Verdana", Font.BOLD | Font.ITALIC, 20);
+		Font font_button = new Font("Verdana", Font.ITALIC, 20);
+		Main.random();
+		JLabel textField = new JLabel();
+		textField.setBounds(337, 456, 600, 50);
+		textField.setFont(font);
+		textField.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3, true));
+		frame.getContentPane().add(textField);
+		
+		JLabel label = new JLabel();
+		label.setBounds(337, 390, 300, 50);
+		label.setFont(font);
+        frame.getContentPane().add(label);
+		
+		 JLabel label2 = new JLabel();
+		label2.setBounds(337, 410, 420, 50);
+		label2.setFont(font);
+        frame.getContentPane().add(label2);
+        
+        JLabel label3 = new JLabel();
+		label3.setBounds(337, 370, 350, 50);
+		label3.setFont(font);
+        frame.getContentPane().add(label3);
+        
+	    JButton buttonzero = new JButton("0");
+		buttonzero.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				textField.setText(textField.getText()+"0");
+				
+				restart.restart();
+			}
+		});
+		buttonzero.setFont(font_button);
+		buttonzero.setBounds(337, 885, 300, 100);
+		frame.getContentPane().add(buttonzero);
+		
+		JButton buttonone = new JButton("1");
+		buttonone.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				input=input+"1";
+				textField.setText(input);
+				
+				restart.restart();
+			}
+		});
+		buttonone.setFont(font_button);
+		buttonone.setBounds(635, 885, 300, 100);
+		frame.getContentPane().add(buttonone);
+		
+		JButton buttontwo = new JButton("2");
+		buttontwo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				input=input+"2";
+				textField.setText(input);
+				
+				restart.restart();
+			}
+		});
+		buttontwo.setFont(font_button);
+		buttontwo.setBounds(337, 790, 300, 100);
+		frame.getContentPane().add(buttontwo);
+		
+		JButton buttonthree = new JButton("3");
+		buttonthree.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				input=input+"3";
+				textField.setText(input);
+		
+				restart.restart();
+			}
+		});
+		buttonthree.setFont(font_button);
+		buttonthree.setBounds(635, 790, 300, 100);
+		frame.getContentPane().add(buttonthree);
+		
+		JButton buttonfour = new JButton("4");
+		buttonfour.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				input=input+"4";
+				textField.setText(input);
+			
+				restart.restart();
+			}
+		});
+		buttonfour.setFont(font_button);
+		buttonfour.setBounds(337, 695, 300, 100);
+		frame.getContentPane().add(buttonfour);
+		
+		JButton buttonfive = new JButton("5");
+		buttonfive.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				input=input+"5";
+				textField.setText(input);
+				
+				restart.restart();
+			}
+		});
+		buttonfive.setFont(font_button);
+		buttonfive.setBounds(635, 695, 300, 100);
+		frame.getContentPane().add(buttonfive);
+	
+		JButton buttonsix = new JButton("6");
+		buttonsix.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				input=input+"6";
+				textField.setText(input);
+				
+				restart.restart();
+			}
+		});
+		buttonsix.setFont(font_button);
+		buttonsix.setBounds(337, 600, 300, 100);
+		frame.getContentPane().add(buttonsix);
+		
+		JButton buttonseven = new JButton("7");
+		buttonseven.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				input=input+"7";
+				textField.setText(input);
+			
+				restart.restart();
+			}
+		});
+		buttonseven.setFont(font_button);
+		buttonseven.setBounds(635, 600, 300, 100);
+		frame.getContentPane().add(buttonseven);
+		
+		JButton buttoneight = new JButton("8");
+		buttoneight.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				input=input+"8";
+				textField.setText(input);
+		
+				restart.restart();
+			}
+		});
+		buttoneight.setFont(font_button);
+		buttoneight.setBounds(337, 505, 300, 100);
+		frame.getContentPane().add(buttoneight);
+		
+		JButton buttonnine = new JButton("9");
+		buttonnine.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				input=input+"9";
+			textField.setText(input);
+	
+			restart.restart();
+				
+			}
+		});
+		buttonnine.setFont(font_button);
+		buttonnine.setBounds(635, 505, 300, 100);
+		frame.getContentPane().add(buttonnine);
+		
+		JButton delete = new JButton("Löschen");
+		delete.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				input="";
+				textField.setText("");
+				
+				restart.restart();
+				 
+			}
+		});
+		delete.setFont(font_button);
+		delete.setBounds(935, 505, 300, 100);
+		frame.getContentPane().add(delete);
+		
+		JButton enter = new JButton("Enter");
+		enter.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int guess = Integer.parseInt(input);
+				
+				Writer.numberOfTries--;
+
+				if(guess>Main.randomNumber) {
+					label3.setText("Die Zahl ist zu Hoch");
+					   
+				}
+                if(guess<Main.randomNumber) {
+                	label3.setText("Die Zahl ist zu Niedrig");
+                	  
+				}
+                if(guess==Main.randomNumber) {
+					label3.setText("Die Zahl ist Richtig");
+					 
+				}
+                label.setText("Versuche: "+Writer.numberOfTries);
+				if(Writer.numberOfTries>=0) {
+				    try {
+				       
+				        if(guess==Main.randomNumber) {
+				            label2.setText("Gewonnen");
+				            finished="Gewonnen";
+				           
+				            playerID();
+							
+						    input="";
+						    textField.setText("");
+						   
+				         } else {
+				            label2.setText("Die zahl ist falsch");
+				            input="";
+				            textField.setText("");
+				        }
+				    } catch(Exception z) {
+				       
+				    }
+
+				    if(Writer.numberOfTries==0) {
+				        label2.setText("Game Over! Die Zahl war: " + Main.randomNumber);
+				        input="";
+				        finished="Verloren";
+				        textField.setText("");
+				        playerID();
+				    }
+				    }
+				
+				restart.restart();
+				
+                
+			} 
+		});
+		enter.setFont(font_button);
+		enter.setBounds(935, 600, 300, 100);
+		frame.getContentPane().add(enter);
+		
+		
+		
+		JButton Static = new JButton("Statistik");
+		Static.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				  input="";
+					frame.dispose();
+					 new Statistic();
+					
+					restart.restart();
+			}
+		});
+		Static.setFont(font_button);
+		Static.setBounds(1500, 130, 369, 100);
+		frame.getContentPane().add(Static);
+		
+		
+		JButton selectpage_button = new JButton("Hauptmenü");
+		selectpage_button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				input="";
+				new Selectmode();
+				frame.dispose();
+				
+				restart.restart();
+			}
+		});
+		selectpage_button.setFont(font_button);
+		selectpage_button.setBounds(1500, 24, 369, 100);
+		frame.getContentPane().add(selectpage_button);
+		
+		JButton close_button = new JButton("Sperren");
+		close_button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new Gclose();
+				frame.dispose();
+			
+				restart.restart();
+			}
+		});
+		close_button.setFont(font_button);
+		close_button.setBounds(26, 24, 369, 100);
+		frame.getContentPane().add(close_button);
+		frame.setVisible(true);
+		
+		System.out.println(Main.randomNumber);
+		
+	}
+
+	public void playerID() {
+	 
+     JFrame frame = new JFrame();
+     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  
+     JTextField textField = new JTextField(20);
+     Time restart = new Time();
+     
+   JPanel keyboardPanel = new JPanel(new GridLayout(3, 10));
+     for (char c = 'A'; c <= 'Z'; c++) {
+    	 
+         JButton keyButton = new JButton(String.valueOf(c));
+         keyButton.addActionListener(new ActionListener() {
+             public void actionPerformed(ActionEvent e) {
+                 textField.setText(textField.getText() + keyButton.getText());
+                 restart.restart();
+        }
+         });
+         keyboardPanel.add(keyButton);
+     }
+     JButton Button = new JButton("OK");
+     Button.addActionListener(new ActionListener() {
+         public void actionPerformed(ActionEvent e) {
+      Writer.playerID = textField.getText();
+      new Writer();
+			
+			
+	 frame.dispose();
+	 Writer.numberOfTries=10;
+	 Gamemodeone.frame.dispose();
+     new Gamemodeone();
+		         }
+     });
+     JPanel panel = new JPanel(new BorderLayout());
+     panel.add(textField, BorderLayout.NORTH);
+     panel.add(keyboardPanel, BorderLayout.CENTER);
+     panel.add(Button, BorderLayout.SOUTH);
+     frame.getContentPane().add(panel); 
+     frame.pack();
+     frame.setVisible(true);
+	 
+ }
+}			
+		    
+ 
+	
+
+
+
+	
+	
+

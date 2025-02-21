@@ -1,0 +1,556 @@
+/*
+ * 
+ */
+package controll;
+
+
+
+
+import java.awt.Color;
+import java.awt.Font;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import javax.swing.JFrame;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
+import java.util.Vector;
+import java.util.regex.Pattern;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JButton;
+import javax.swing.JScrollPane;
+import javax.swing.JTextField;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.RowFilter;
+import javax.swing.table.TableRowSorter;
+
+public class Statistic {
+
+    private JFrame frame;
+    private JTextField textField;
+    private JTable table;
+
+    private TableRowSorter<DefaultTableModel> sorter;
+    public Statistic() {
+        Writer save = new Writer();
+        Time restart = new Time();
+        Font font = new Font("Verdana", Font.BOLD | Font.ITALIC, 20);
+		Font font_button = new Font("Verdana", Font.ITALIC, 20);
+        frame = new JFrame();
+        frame.setBounds(0, 0, 1920, 1080);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.getContentPane().setLayout(null);
+ 
+        
+      
+       
+        Vector<Vector<String>> data = new Vector<>();
+        Vector<String> columnNames = new Vector<>(Arrays.asList("Spieler", "Datum", "Zeit", "Mode", "Ergebniss", "Versuche"));
+
+        try (BufferedReader br = new BufferedReader(new FileReader("Statistic_save.txt"))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                Vector<String> row = new Vector<>(Arrays.asList(line.split("\\s+")));
+                data.add(row);
+            }
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(frame, "Fehler beim Lesen der Datei: " + e.getMessage(),
+                                          "Fehler", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+       
+        DefaultTableModel model = new DefaultTableModel(data, columnNames);
+        table = new JTable(model);
+        table.setBounds(0, 0, 1500, 1080);
+        frame.getContentPane().add(table);
+        table.setBackground(Color.white);
+        table.setFont(font);
+        JScrollPane scrollpane = new JScrollPane(table);
+        scrollpane.setBounds(10, 0, 1237, 1040);
+        frame.getContentPane().add(scrollpane);
+        
+        JButton close_button = new JButton("Sperren");
+        close_button.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                frame.dispose();
+                
+                restart.restart();
+                new Gclose();
+            }
+        });
+        close_button.setBounds(1550, 830, 300, 100);
+        frame.getContentPane().add(close_button);
+        frame.setVisible(true);
+        close_button.setFont(font_button);
+
+        
+        JButton modemenue_button = new JButton("Hauptmenü");
+        modemenue_button.addActionListener(new ActionListener() {
+        	@Override
+            public void actionPerformed(ActionEvent e) {
+                
+                new Selectmode();
+                frame.dispose();
+                restart.restart();
+            }
+        });
+        modemenue_button.setBounds(1550, 730, 300, 100);
+        frame.getContentPane().add(modemenue_button);
+        modemenue_button.setFont(font_button);
+
+        textField = new JTextField();
+        textField.setBounds(1257, 75, 350, 36);
+        frame.getContentPane().add(textField);
+        textField.setColumns(10);
+
+        JLabel filter = new JLabel("Schreibe hier in den Text Feld nach was du suchen möchtest");
+        filter.setBounds(1257, 11, 600, 50);
+        frame.getContentPane().add(filter);
+        filter.setFont(font);
+        
+     
+       
+        
+        JButton button_1 = new JButton("1");
+        button_1.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		textField.setText(textField.getText()+"1");
+        		restart.restart();
+        	}
+        });
+        button_1.setBounds(1257, 147, 89, 23);
+        frame.getContentPane().add(button_1);
+        
+        JButton button_7 = new JButton("7");
+        button_7.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		textField.setText(textField.getText()+"7");
+        		restart.restart();
+        	}
+        });
+        button_7.setBounds(1257, 177, 89, 23);
+        frame.getContentPane().add(button_7);
+        
+        JButton button_C = new JButton("C");
+        button_C.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		textField.setText(textField.getText()+"C");
+        		restart.restart();
+        	}
+        });
+        button_C.setBounds(1257, 207, 89, 23);
+        frame.getContentPane().add(button_C);
+        
+        JButton button_I = new JButton("I");
+        button_I.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		textField.setText(textField.getText()+"I");
+        		restart.restart();
+        	}
+        });
+        button_I.setBounds(1257, 241, 89, 23);
+        frame.getContentPane().add(button_I);
+        
+        JButton button_2 = new JButton("2");
+        button_2.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		textField.setText(textField.getText()+"2");
+        		restart.restart();
+        	}
+        });
+        button_2.setBounds(1356, 147, 89, 23);
+        frame.getContentPane().add(button_2);
+        
+        JButton button_3 = new JButton("3");
+        button_3.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		textField.setText(textField.getText()+"3");
+        		restart.restart();
+        	}
+        });
+        button_3.setBounds(1455, 147, 89, 23);
+        frame.getContentPane().add(button_3);
+        
+        JButton button_4 = new JButton("4");
+        button_4.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		textField.setText(textField.getText()+"4");
+        		restart.restart();
+        	}
+        });
+        button_4.setBounds(1550, 147, 89, 23);
+        frame.getContentPane().add(button_4);
+        
+        JButton button_5 = new JButton("5");
+        button_5.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		textField.setText(textField.getText()+"5");
+        		restart.restart();
+        	}
+        });
+        button_5.setBounds(1649, 147, 89, 23);
+        frame.getContentPane().add(button_5);
+        
+        JButton button_6 = new JButton("6");
+        button_6.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		textField.setText(textField.getText()+"6");
+        		restart.restart();
+        	}
+        });
+        button_6.setBounds(1748, 147, 89, 23);
+        frame.getContentPane().add(button_6);
+        
+        JButton button_8 = new JButton("8");
+        button_8.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		textField.setText(textField.getText()+"8");
+        		restart.restart();
+        	}
+        });
+        button_8.setBounds(1356, 177, 89, 23);
+        frame.getContentPane().add(button_8);
+        
+        JButton button_9 = new JButton("9");
+        button_9.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		textField.setText(textField.getText()+"9");
+        		restart.restart();
+        	}
+        });
+        button_9.setBounds(1455, 177, 89, 23);
+        frame.getContentPane().add(button_9);
+        
+        JButton button_0 = new JButton("0");
+        button_0.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		textField.setText(textField.getText()+"0");
+        		restart.restart();
+        	}
+        });
+        button_0.setBounds(1550, 177, 89, 23);
+        frame.getContentPane().add(button_0);
+        
+        JButton button_A = new JButton("A");
+        button_A.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		textField.setText(textField.getText()+"A");
+        		restart.restart();
+        	}
+        });
+        button_A.setBounds(1649, 177, 89, 23);
+        frame.getContentPane().add(button_A);
+        
+        JButton button_B = new JButton("B");
+        button_B.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		textField.setText(textField.getText()+"B");
+        		restart.restart();
+        	}
+        });
+        button_B.setBounds(1748, 177, 89, 23);
+        frame.getContentPane().add(button_B);
+        
+        JButton button_D = new JButton("D");
+        button_D.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		textField.setText(textField.getText()+"D");
+        		restart.restart();
+        	}
+        });
+        button_D.setBounds(1356, 207, 89, 23);
+        frame.getContentPane().add(button_D);
+        
+        JButton button_E = new JButton("E");
+        button_E.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		textField.setText(textField.getText()+"E");
+        		restart.restart();
+        	}
+        });
+        button_E.setBounds(1455, 207, 89, 23);
+        frame.getContentPane().add(button_E);
+        
+        JButton button_F = new JButton("F");
+        button_F.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		textField.setText(textField.getText()+"F");
+        		restart.restart();
+        	}
+        });
+        button_F.setBounds(1550, 207, 89, 23);
+        frame.getContentPane().add(button_F);
+        
+        JButton button_G = new JButton("G");
+        button_G.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		textField.setText(textField.getText()+"G");
+        		restart.restart();
+        	}
+        });
+        button_G.setBounds(1649, 207, 89, 23);
+        frame.getContentPane().add(button_G);
+        
+        JButton button_H = new JButton("H");
+        button_H.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		textField.setText(textField.getText()+"H");
+        		restart.restart();
+        	}
+        });
+        button_H.setBounds(1748, 207, 89, 23);
+        frame.getContentPane().add(button_H);
+        
+        JButton button_J = new JButton("J");
+        button_J.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		textField.setText(textField.getText()+"J");
+        		restart.restart();
+        	}
+        });
+        button_J.setBounds(1356, 241, 89, 23);
+        frame.getContentPane().add(button_J);
+        
+        JButton button_K = new JButton("K");
+        button_K.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		textField.setText(textField.getText()+"K");
+        		restart.restart();
+        	}
+        });
+        button_K.setBounds(1455, 241, 89, 23);
+        frame.getContentPane().add(button_K);
+        
+        JButton button_L = new JButton("L");
+        button_L.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		textField.setText(textField.getText()+"L");
+        		restart.restart();
+        	}
+        });
+        button_L.setBounds(1550, 241, 89, 23);
+        frame.getContentPane().add(button_L);
+        
+        JButton button_M = new JButton("M");
+        button_M.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		textField.setText(textField.getText()+"M");
+        		restart.restart();
+        	}
+        });
+        button_M.setBounds(1649, 241, 89, 23);
+        frame.getContentPane().add(button_M);
+        
+        JButton button_N = new JButton("N");
+        button_N.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		textField.setText(textField.getText()+"N");
+        		restart.restart();
+        	}
+        });
+        button_N.setBounds(1748, 241, 89, 23);
+        frame.getContentPane().add(button_N);
+        
+        JButton button_O = new JButton("O");
+        button_O.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		textField.setText(textField.getText()+"O");
+        		restart.restart();
+        	}
+        });
+        button_O.setBounds(1257, 275, 89, 23);
+        frame.getContentPane().add(button_O);
+        
+        JButton button_P = new JButton("P");
+        button_P.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		textField.setText(textField.getText()+"P");
+        		restart.restart();
+        	}
+        });
+        button_P.setBounds(1356, 275, 89, 23);
+        frame.getContentPane().add(button_P);
+        
+        JButton button_Q = new JButton("Q");
+        button_Q.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		textField.setText(textField.getText()+"Q");
+        		restart.restart();
+        	}
+        });
+        button_Q.setBounds(1455, 275, 89, 23);
+        frame.getContentPane().add(button_Q);
+        
+        JButton button_R = new JButton("R");
+        button_R.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		textField.setText(textField.getText()+"R");
+        		restart.restart();
+        	}
+        });
+        button_R.setBounds(1550, 275, 89, 23);
+        frame.getContentPane().add(button_R);
+        
+        JButton button_S = new JButton("S");
+        button_S.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		textField.setText(textField.getText()+"S");
+        		restart.restart();
+        	}
+        });
+        button_S.setBounds(1649, 275, 89, 23);
+        frame.getContentPane().add(button_S);
+        
+        JButton button_T = new JButton("T");
+        button_T.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		textField.setText(textField.getText()+"T");
+        		restart.restart();
+        	}
+        });
+        button_T.setBounds(1748, 275, 89, 23);
+        frame.getContentPane().add(button_T);
+        
+        JButton button_U = new JButton("U");
+        button_U.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		textField.setText(textField.getText()+"U");
+        		restart.restart();
+        	}
+        });
+        button_U.setBounds(1257, 309, 89, 23);
+        frame.getContentPane().add(button_U);
+        
+        JButton button_V = new JButton("V");
+        button_V.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		textField.setText(textField.getText()+"V");
+        		restart.restart();
+        	}
+        });
+        button_V.setBounds(1356, 309, 89, 23);
+        frame.getContentPane().add(button_V);
+        
+        JButton button_W = new JButton("W");
+        button_W.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		textField.setText(textField.getText()+"W");
+        		restart.restart();
+        	}
+        });
+        button_W.setBounds(1455, 309, 89, 23);
+        frame.getContentPane().add(button_W);
+        
+        JButton button_X = new JButton("X");
+        button_X.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		textField.setText(textField.getText()+"X");
+        		restart.restart();
+        	}
+        });
+        button_X.setBounds(1550, 309, 89, 23);
+        frame.getContentPane().add(button_X);
+        
+        JButton button_Y = new JButton("Y");
+        button_Y.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		textField.setText(textField.getText()+"Y");
+        		restart.restart();
+        	}
+        });
+        button_Y.setBounds(1649, 309, 89, 23);
+        frame.getContentPane().add(button_Y);
+        
+        JButton button_Z = new JButton("Z");
+        button_Z.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		textField.setText(textField.getText()+"Z");
+        		restart.restart();
+        	}
+        });
+        button_Z.setBounds(1748, 309, 89, 23);
+        frame.getContentPane().add(button_Z);
+        
+        JButton button_dot = new JButton(":");
+        button_dot.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		textField.setText(textField.getText()+":");
+        		restart.restart();
+        	}
+        });
+        button_dot.setBounds(1257, 343, 89, 23);
+        frame.getContentPane().add(button_dot);
+        
+        JButton button_Enter = new JButton("Enter");
+        button_Enter.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		  String text = textField.getText();
+                  if (text.length() == 0) {
+                      sorter.setRowFilter(null);
+                  } else {
+                      sorter.setRowFilter(RowFilter.regexFilter(text));
+                  }
+                  restart.restart();
+        	}
+        });
+        button_Enter.setBounds(1748, 343, 89, 23);
+        frame.getContentPane().add(button_Enter);
+        
+        JButton button_Clear = new JButton("Löschen");
+        button_Clear.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		
+        		        textField.setText(""); 
+        		       
+        		       
+        		        restart.restart();
+        	}
+        });
+        button_Clear.setBounds(1649, 343, 89, 23);
+        frame.getContentPane().add(button_Clear);
+        
+        JButton button_underline = new JButton("-");
+        button_underline.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		textField.setText(textField.getText()+"-");
+        		restart.restart();
+        	}
+        });
+        button_underline.setBounds(1356, 343, 89, 23);
+        frame.getContentPane().add(button_underline);
+        
+     
+        
+       
+       
+        sorter = new TableRowSorter<>(model);
+        table.setRowSorter(sorter);
+
+        textField.addActionListener(e -> {
+            String text = textField.getText().trim(); 
+            if (text.isEmpty()) {
+                sorter.setRowFilter(null);
+            } else {
+                String[] keywords = text.split("\\s+");
+                List<RowFilter<Object, Object>> filters = new ArrayList<>();
+                for (String keyword : keywords) {
+                    filters.add(RowFilter.regexFilter("(?i).*" + Pattern.quote(keyword) + ".*"));
+                }
+                RowFilter<DefaultTableModel, Object> rowFilter = RowFilter.andFilter(filters);
+                sorter.setRowFilter(rowFilter);
+            }
+        });
+
+    }
+}
+
