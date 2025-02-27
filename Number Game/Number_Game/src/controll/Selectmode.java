@@ -1,7 +1,5 @@
-/*
- * 
- */
-package controll;
+
+
 
 
 import java.awt.Font;

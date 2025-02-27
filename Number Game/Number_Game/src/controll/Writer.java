@@ -1,7 +1,7 @@
 /*
  * 
  */
-package controll;
+
 
 
 import java.io.FileWriter;

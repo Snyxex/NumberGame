@@ -1,5 +1,4 @@
 
-package controll;
 
 
 import java.awt.Color;
